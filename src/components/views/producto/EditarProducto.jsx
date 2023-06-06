@@ -59,7 +59,22 @@ const EditarProducto = () => {
           </Form.Text>
         </Form.Group>
 
-        {/* TODO: Aqui va la Descripción a editar*/}
+        <Form.Group className="mb-3" controlId="formDescripcion">
+          <Form.Label>Descripción*</Form.Label>
+          <Form.Control
+            as="textarea"
+            placeholder="Combinación perfecta entre leche, choclate, café intenso y un toque de canela."
+            style={{ height: '100px' }}
+            aria-label="Seleccione una descripción:"
+            {...register('descripcionProducto', {
+              required: 'Debe ingresar una descripción del producto',
+            })}
+          />
+          <Form.Text className="text-danger my-2 py-3">
+            {errors.descripcionProducto?.message}
+          </Form.Text>
+        </Form.Group>
+
         <Form.Group className="mb-3" controlId="formPrecio">
           <Form.Label>Categoria*</Form.Label>
           <Form.Select
