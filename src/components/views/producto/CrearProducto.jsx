@@ -53,6 +53,11 @@ const CrearProducto = () => {
             placeholder="Ej: https://www.pexels.com/es-es/vans-en-blanco-y-negro-fuera-de-la-decoracion-para-colgar-en-la-pared-1230679/"
             {...register('imagen', {
               required: 'La imagen es un dato obligatorio.',
+              pattern: {
+                value: /^(http(s?):)([/|.|\w|\s|-])*\.(?:png|jpe?g|gif|svg)$/,
+                message:
+                  'La URL de la imagen debe cumplir con  por ej: http://imagen.com/img.jpg',
+              },
             })}
           />
           <Form.Text className="text-danger my-2 py-3">
@@ -94,7 +99,7 @@ const CrearProducto = () => {
             {errors.categoriaProducto?.message}
           </Form.Text>
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" className="mb-2">
           Guardar
         </Button>
       </Form>

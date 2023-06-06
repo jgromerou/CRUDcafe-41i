@@ -60,7 +60,7 @@ const Login = () => {
                 {errors.password?.message}
               </Form.Text>
             </Form.Group>
-            <Button variant="primary" type="submit" className="my-2">
+            <Button variant="primary" type="submit" className="mb-2">
               Ingresar
             </Button>
           </Form>

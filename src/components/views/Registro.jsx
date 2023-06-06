@@ -27,6 +27,10 @@ const Registro = () => {
                 placeholder="Ingrese un nombre de usuario"
                 {...register('nombreUsuario', {
                   required: 'El Nombre de Usuario es un dato obligatorio.',
+                  pattern: {
+                    value: /^[A-Za-z]+$/,
+                    message: 'Por favor, ingrese solo letras.',
+                  },
                 })}
               />
               <Form.Text className="text-danger my-2 py-3">
