@@ -1,4 +1,4 @@
-import { Container, Card, Row, Col } from "react-bootstrap";
+import { Container, Card, Row, Col } from 'react-bootstrap';
 
 const DetalleProducto = () => {
   return (
@@ -16,12 +16,19 @@ const DetalleProducto = () => {
               <Card.Title>MOCHACCINO CANELA</Card.Title>
               <hr />
               <Card.Text>
-              Combinación perfecta entre leche, choclate, café intenso y un toque de canela. Café con granos 100% de arábica brasileña. Todo en una capsula inteligente.
-              <br/>
-              <br/>
-              <span className="text-danger fw-semibold ">Categoria:</span> Café
-              <br />
-              <span className="text-danger fw-semibold ">Precio:</span> $1.740,00</Card.Text>
+                Combinación perfecta entre leche, choclate, café intenso y un
+                toque de canela. Café con granos 100% de arábica brasileña. Todo
+                en una capsula inteligente.
+                <br />
+                <br />
+                <span className="text-danger fw-semibold ">
+                  Categoria:
+                </span>{' '}
+                Café
+                <br />
+                <span className="text-danger fw-semibold ">Precio:</span>{' '}
+                $1.740,00
+              </Card.Text>
             </Card.Body>
           </Col>
         </Row>
