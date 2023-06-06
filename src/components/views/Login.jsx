@@ -13,6 +13,8 @@ const Login = () => {
   const onSubmit = (usuario) => {
     console.log(usuario);
     login();
+
+    reset();
   };
 
   return (
@@ -36,14 +38,14 @@ const Login = () => {
                   },
                 })}
               />
-              <Form.Text className="text-danger">
+              <Form.Text className="text-danger my-2 py-3">
                 {errors.email?.message}
               </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control
-                type="text"
+                type="password"
                 placeholder="Password"
                 {...register('password', {
                   required: 'El Password es un dato obligatorio.',
@@ -54,11 +56,11 @@ const Login = () => {
                   },
                 })}
               />
-              <Form.Text className="text-danger">
+              <Form.Text className="text-danger my-2 py-3">
                 {errors.password?.message}
               </Form.Text>
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" className="my-2">
               Ingresar
             </Button>
           </Form>

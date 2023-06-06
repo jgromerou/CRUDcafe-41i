@@ -12,6 +12,8 @@ const EditarProducto = () => {
   const onSubmit = (producto) => {
     console.log(producto);
     //TODO: Hacer la función crearProducto en queries.js e incovarla aqui
+
+    reset();
   };
 
   return (
