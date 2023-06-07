@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ setUsuarioLogueado }) => {
   const {
     register,
     handleSubmit,
@@ -23,6 +23,7 @@ const Login = () => {
           `${respuesta.nombreUsuario} iniciste sesión correctamente`,
           'success'
         );
+        setUsuarioLogueado(respuesta);
         navegacion('/administrador');
       } else {
         Swal.fire('Error', 'Email o password incorrecto', 'error');
