@@ -14,7 +14,8 @@ import Registro from './components/views/Registro';
 import { useState } from 'react';
 
 function App() {
-  const [usuarioLogueado, setUsuarioLogueado] = useState({});
+  const usuario = sessionStorage.getItem('usuario') || {};
+  const [usuarioLogueado, setUsuarioLogueado] = useState(usuario);
 
   return (
     <BrowserRouter>
