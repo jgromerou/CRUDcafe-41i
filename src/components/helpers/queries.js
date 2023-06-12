@@ -40,9 +40,25 @@ export const consultaListaProductos = async () => {
 
 export const consultaBorrarProductos = async (id) => {
   try {
-    const respuesta = await fetch(`${URLProducto}/${id}`);
-    const borrarProducto = await respuesta.json();
-    return borrarProducto;
+    const respuesta = await fetch(`${URLProducto}/${id}`, {
+      method: 'DELETE',
+    });
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const consultaNuevoProducto = async (producto) => {
+  try {
+    const respuesta = await fetch(`${URLProducto}/${producto}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(producto),
+    });
+    return respuesta;
   } catch (error) {
     console.log(error);
   }
