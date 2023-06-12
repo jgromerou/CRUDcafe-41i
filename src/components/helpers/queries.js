@@ -38,6 +38,16 @@ export const consultaListaProductos = async () => {
   }
 };
 
+export const consultaBorrarProductos = async (id) => {
+  try {
+    const respuesta = await fetch(`${URLProducto}/${id}`);
+    const borrarProducto = await respuesta.json();
+    return borrarProducto;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 /*
   GET: obtener un listado de elementos o un elemento.
 
