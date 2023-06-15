@@ -1,19 +1,63 @@
 import { Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import {
+  consultaEditarProducto,
+  consultaProducto,
+} from '../../helpers/queries';
+import Swal from 'sweetalert2';
 
 const EditarProducto = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
     reset,
   } = useForm();
 
-  const onSubmit = (producto) => {
-    console.log(producto);
-    //TODO: Hacer la función crearProducto en queries.js e incovarla aqui
+  const { id } = useParams();
+  const navegacion = useNavigate();
 
-    reset();
+  useEffect(() => {
+    consultaProducto(id).then((respuesta) => {
+      if (respuesta) {
+        console.log('tengo que cargar el objeto en el formulario');
+        console.log(respuesta);
+        setValue('nombreProducto', respuesta.nombreProducto);
+        setValue('precio', respuesta.precio);
+        setValue('imagen', respuesta.imagen);
+        setValue('descripcion', respuesta.descripcion);
+        setValue('categoria', respuesta.categoria);
+      } else {
+        Swal.fire(
+          'Ocurrio un error',
+          `No se puede editar el producto, intentelo mas tarde`,
+          'error'
+        );
+      }
+    });
+  }, []);
+
+  const onSubmit = (productoEditado) => {
+    console.log(productoEditado);
+    consultaEditarProducto(productoEditado, id).then((respuestaEditado) => {
+      if (respuestaEditado && respuestaEditado.status === 200) {
+        Swal.fire(
+          'Producto editado',
+          `El producto ${productoEditado.nombreProducto} fue editado correctamente`,
+          'success'
+        );
+        navegacion('/administrador');
+      } else {
+        Swal.fire(
+          'Ocurrio un error',
+          `El producto ${productoEditado.nombreProducto} no fue editado, intentelo mas tarde`,
+          'error'
+        );
+      }
+    });
   };
 
   return (
@@ -73,7 +117,7 @@ const EditarProducto = () => {
             placeholder="Combinación perfecta entre leche, choclate, café intenso y un toque de canela."
             style={{ height: '100px' }}
             aria-label="Seleccione una descripción:"
-            {...register('descripcionProducto', {
+            {...register('descripcion', {
               required: 'Debe ingresar una descripción del producto',
             })}
           />
@@ -82,19 +126,19 @@ const EditarProducto = () => {
           </Form.Text>
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formPrecio">
+        <Form.Group className="mb-3" controlId="formCategoria">
           <Form.Label>Categoria*</Form.Label>
           <Form.Select
             aria-label="Seleccione una categoría:"
-            {...register('categoriaProducto', {
+            {...register('categoria', {
               required: 'Debe seleccionar una categoría',
             })}
           >
             <option value="">Seleccione una opcion</option>
-            <option value="bebida caliente">Bebida caliente</option>
-            <option value="bebida fria">Bebida fria</option>
-            <option value="dulce">Dulce</option>
-            <option value="salado">Salado</option>
+            <option value="Bebida caliente">Bebida caliente</option>
+            <option value="Bebida fria">Bebida fria</option>
+            <option value="Dulce">Dulce</option>
+            <option value="Salado">Salado</option>
           </Form.Select>
           <Form.Text className="text-danger my-2 py-3">
             {errors.categoriaProducto?.message}

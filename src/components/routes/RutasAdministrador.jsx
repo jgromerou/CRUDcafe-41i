@@ -8,11 +8,15 @@ const RutasAdministrador = () => {
     <>
       <Routes>
         <Route exact path="/" element={<Administrador />}></Route>
-        <Route exact path="/crear-producto" element={<CrearProducto />}></Route>
         <Route
           exact
-          path="/editar-producto"
-          element={<EditarProducto />}
+          path="/crear-producto"
+          element={<CrearProducto></CrearProducto>}
+        ></Route>
+        <Route
+          exact
+          path="/editar-producto/:id"
+          element={<EditarProducto></EditarProducto>}
         ></Route>
       </Routes>
     </>
