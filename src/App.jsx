@@ -11,9 +11,10 @@ import Registro from './components/views/Registro';
 import { useState } from 'react';
 import RutasProtegidas from './components/routes/RutasProtegidas';
 import RutasAdministrador from './components/routes/RutasAdministrador';
+import RutasAdministradorUsuario from './components/routes/RutasAdministradorUsuario';
 
 function App() {
-  const usuario = sessionStorage.getItem('usuario') || {};
+  const usuario = JSON.parse(sessionStorage.getItem('usuario')) || {};
   const [usuarioLogueado, setUsuarioLogueado] = useState(usuario);
 
   return (
@@ -31,6 +32,7 @@ function App() {
           element={<Login setUsuarioLogueado={setUsuarioLogueado} />}
         ></Route>
         <Route exact path="/detalle/:id" element={<DetalleProducto />}></Route>
+
         <Route
           exact
           path="/administrador/*"
@@ -40,6 +42,17 @@ function App() {
             </RutasProtegidas>
           }
         />
+
+        <Route
+          exact
+          path="/administradorUsuario/*"
+          element={
+            <RutasProtegidas>
+              <RutasAdministradorUsuario></RutasAdministradorUsuario>
+            </RutasProtegidas>
+          }
+        />
+        <Route exact path="/detalle/:id" element={<DetalleProducto />}></Route>
         <Route path="*" element={<Error404 />}></Route>
       </Routes>
       <Footer />

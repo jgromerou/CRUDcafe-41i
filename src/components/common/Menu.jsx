@@ -1,4 +1,4 @@
-import { Navbar, Container, Nav, Button } from 'react-bootstrap';
+import { Navbar, Container, Nav, Button, NavDropdown } from 'react-bootstrap';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
@@ -25,13 +25,26 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
             </NavLink>
             {usuarioLogueado.nombreUsuario ? (
               <>
-                <NavLink
-                  end
-                  className={'nav-item nav-link'}
-                  to="/administrador"
-                >
-                  Administrador
-                </NavLink>
+                <NavDropdown title="Administrador" id="dropdownAdministrador">
+                  <NavDropdown.Item
+                    as={NavLink}
+                    end
+                    className={'nav-item nav-link '}
+                    to="/administrador"
+                  >
+                    Productos
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item
+                    as={NavLink}
+                    end
+                    className={'nav-item nav-link '}
+                    to="/administradorUsuario"
+                  >
+                    Usuarios
+                  </NavDropdown.Item>
+                </NavDropdown>
+
                 <Button onClick={logout} variant="dark">
                   Logout
                 </Button>

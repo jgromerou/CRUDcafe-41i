@@ -8,6 +8,14 @@
   flex-grow: 1;
 }
 
+#dropdownAdministrador + div {
+  background-color: #dc3545 !important;
+}
+
+.dropdown-menu .active {
+  background-color: green !important;
+}
+
 .banner {
   object-fit: cover;
   height: 20rem;

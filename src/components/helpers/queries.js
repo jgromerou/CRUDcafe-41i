@@ -43,6 +43,16 @@ export const registrar = async (usuarioNuevo) => {
   }
 };
 
+export const consultaListaUsuarios = async () => {
+  try {
+    const respuesta = await fetch(URLUsuario);
+    const listaUsuarios = await respuesta.json();
+    return listaUsuarios;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const consultaListaProductos = async () => {
   try {
     const respuesta = await fetch(URLProducto);
