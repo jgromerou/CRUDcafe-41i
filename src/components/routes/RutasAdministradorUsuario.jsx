@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import AdministradorUsuario from '../views/AdministradorUsuario';
 import CrearUsuario from '../views/usuario/CrearUsuario';
+import EditarUsuario from '../views/usuario/EditarUsuario';
 
 const RutasAdministradorUsuario = () => {
   return (
@@ -11,6 +12,11 @@ const RutasAdministradorUsuario = () => {
           exact
           path="/crear-usuario"
           element={<CrearUsuario></CrearUsuario>}
+        ></Route>
+        <Route
+          exact
+          path="/editar-usuario/:id"
+          element={<EditarUsuario></EditarUsuario>}
         ></Route>
       </Routes>
     </>

@@ -5,7 +5,6 @@ import {
   consultaListaUsuarios,
 } from '../../helpers/queries';
 import Swal from 'sweetalert2';
-import { useState } from 'react';
 
 const ItemUsuario = ({ usuario, setUsuarios }) => {
   const borrarUsuario = () => {
@@ -49,10 +48,11 @@ const ItemUsuario = ({ usuario, setUsuarios }) => {
       <td>{usuario.id}</td>
       <td>{usuario.nombreUsuario}</td>
       <td>{usuario.email}</td>
+      <td>{usuario.rol}</td>
       <td>
         <Link
           className="btn btn-warning"
-          to={'/administrador/editar-usuario/' + usuario.id}
+          to={'/administradorUsuario/editar-usuario/' + usuario.id}
         >
           Editar
         </Link>

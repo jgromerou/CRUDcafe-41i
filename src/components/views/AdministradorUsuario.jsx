@@ -35,6 +35,7 @@ const AdministradorUsuario = () => {
             <th>Cod</th>
             <th>Usuario</th>
             <th>Email</th>
+            <th>Rol</th>
             <th>Opciones</th>
           </tr>
         </thead>

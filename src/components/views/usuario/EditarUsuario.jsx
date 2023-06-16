@@ -1,45 +1,66 @@
 import { Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { registrar } from '../../helpers/queries';
+import { useEffect, useRef } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { consultaEditarUsuario, consultaUsuario } from '../../helpers/queries';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
-import { useRef } from 'react';
 
-const CrearUsuario = () => {
+const EditarUsuario = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
     watch,
     reset,
   } = useForm();
 
+  const { id } = useParams();
   const navegacion = useNavigate();
-  const onSubmit = (usuarioNuevo) => {
-    registrar(usuarioNuevo).then((respuestaCreated) => {
-      console.log(respuestaCreated);
-      if (respuestaCreated && respuestaCreated.status === 201) {
-        Swal.fire(
-          'Usuario creado',
-          `El usuario ${usuarioNuevo.nombreUsuario} fue creado correctamente`,
-          'success'
-        );
-        reset();
-        navegacion('/administradorUsuario');
+  const password = useRef({});
+
+  useEffect(() => {
+    consultaUsuario(id).then((respuesta) => {
+      if (respuesta) {
+        console.log('tengo que cargar el objeto en el formulario');
+        console.log(respuesta);
+        setValue('nombreUsuario', respuesta.nombreUsuario);
+        setValue('email', respuesta.email);
+        setValue('rol', respuesta.rol);
       } else {
         Swal.fire(
           'Ocurrio un error',
-          `El usuario ${usuarioNuevo.nombreUsuario} no fue creado, intentelo mas tarde`,
+          `No se puede editar el usuario, intentelo mas tarde`,
+          'error'
+        );
+      }
+    });
+  }, []);
+
+  const onSubmit = (usuarioEditado) => {
+    console.log(usuarioEditado);
+    consultaEditarUsuario(usuarioEditado, id).then((respuestaEditado) => {
+      if (respuestaEditado && respuestaEditado.status === 200) {
+        Swal.fire(
+          'Usuario editado',
+          `El usuario ${usuarioEditado.nombreUsuario} fue editado correctamente`,
+          'success'
+        );
+        navegacion('/administrador');
+      } else {
+        Swal.fire(
+          'Ocurrio un error',
+          `El usuario ${usuarioEditado.nombreUsuario} no fue editado, intentelo mas tarde`,
           'error'
         );
       }
     });
   };
-  const password = useRef({});
+
   password.current = watch('password', '');
   return (
     <section className="container mainSection">
-      <h1 className="display-4 mt-5">Nuevo usuario</h1>
+      <h1 className="display-4 mt-5">Editar Usuario</h1>
       <hr />
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mb-2">
@@ -113,6 +134,7 @@ const CrearUsuario = () => {
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formRol">
+          <Form.Label>Rol*</Form.Label>
           <Form.Select
             {...register('rol', {
               required: 'El rol es obligatorio.',
@@ -134,4 +156,4 @@ const CrearUsuario = () => {
   );
 };
 
-export default CrearUsuario;
+export default EditarUsuario;

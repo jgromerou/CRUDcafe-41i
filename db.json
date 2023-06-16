@@ -59,11 +59,12 @@
   ],
   "usuarios": [
     {
-      "id": 1,
       "nombreUsuario": "administrador",
       "email": "admin@rollingcode.com",
-      "password": "123456aA",
-      "rol": "admin"
+      "password": "123456bB",
+      "repetirPassword": "123456bB",
+      "rol": "admin",
+      "id": 1
     },
     {
       "nombreUsuario": "prueba",
@@ -85,6 +86,22 @@
       "password": "123456aA",
       "id": 4,
       "rol": "user"
+    },
+    {
+      "nombreUsuario": "pruebaCinco",
+      "email": "correo@correo.com",
+      "password": "123456aA",
+      "repetirPassword": "123456aA",
+      "rol": "admin",
+      "id": 5
+    },
+    {
+      "nombreUsuario": "pruebaSeis",
+      "email": "correo@correo.com",
+      "password": "123456aA",
+      "repetirPassword": "123456aA",
+      "rol": "admin",
+      "id": 6
     }
   ]
 }
