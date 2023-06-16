@@ -1,15 +1,61 @@
-#root{
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.mainSection{
-    flex-grow: 1;
+.mainSection {
+  flex-grow: 1;
 }
 
-.banner{
-    object-fit: cover;
+#dropdownAdministrador + div {
+  background-color: #dc3545 !important;
+}
+
+.dropdown-menu .active {
+  background-color: green !important;
+}
+
+.banner {
+  object-fit: cover;
+  height: 20rem;
+  width: 100%;
+}
+
+#Error404 {
+  display: flex;
+  justify-content: center;
+}
+#Error404 img {
+  padding-top: 10px;
+  width: 97%;
+  object-fit: cover;
+  display: block;
+  margin: auto;
+}
+
+.cardImage {
+  object-fit: cover;
+  height: 40rem;
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  #Error404 img {
+    width: 80%;
+  }
+  .banner {
     height: 395px;
-    width: 100%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  #Error404 img {
+    width: 40%;
+  }
+  .cardImage {
+    height: unset;
+  }
+  .banner {
+    height: 395px;
+  }
 }

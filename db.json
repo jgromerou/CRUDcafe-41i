@@ -1,0 +1,103 @@
+{
+  "productos": [
+    {
+      "nombreProducto": "Café",
+      "precio": "450",
+      "imagen": "https://images.pexels.com/photos/10273537/pexels-photo-10273537.jpeg",
+      "descripcion": "alguna descripcion de café",
+      "categoria": "Dulce",
+      "id": 1
+    },
+    {
+      "nombreProducto": "Medialuna Chica",
+      "precio": "150",
+      "imagen": "https://n9z4u8f2.rocketcdn.me/wp-content/uploads/2022/01/Medialunas02.jpg",
+      "descripcion": "alguna descripcion de medialuna",
+      "categoria": "Salado",
+      "id": 2
+    },
+    {
+      "nombreProducto": "Medialuna Grande",
+      "precio": "250",
+      "imagen": "https://n9z4u8f2.rocketcdn.me/wp-content/uploads/2022/01/Medialunas02.jpg",
+      "descripcion": "alguna descripcion de medialuna grande",
+      "categoria": "Salado",
+      "id": 3
+    },
+    {
+      "nombreProducto": "Capuccino",
+      "precio": "770",
+      "imagen": "https://images.pexels.com/photos/13395849/pexels-photo-13395849.jpeg",
+      "descripcion": "alguna descripcion de capuccino",
+      "categoria": "Dulce",
+      "id": 4
+    },
+    {
+      "nombreProducto": "Cafe con leche",
+      "precio": "800",
+      "imagen": "https://images.pexels.com/photos/9548499/pexels-photo-9548499.jpeg",
+      "descripcion": "es una descripción del café con leche....",
+      "categoria": "bebida caliente",
+      "id": 5
+    },
+    {
+      "nombreProducto": "prueba3",
+      "precio": "333",
+      "imagen": "https://images.pexels.com/photos/9548499/pexels-photo-9548499.jpeg",
+      "descripcion": "fesfesf",
+      "categoria": "bebida caliente",
+      "id": 6
+    },
+    {
+      "nombreProducto": "prueba44",
+      "precio": "444",
+      "imagen": "https://images.pexels.com/photos/13395849/pexels-photo-13395849.jpeg",
+      "descripcion": "fesfesf",
+      "categoria": "bebida caliente",
+      "id": 7
+    }
+  ],
+  "usuarios": [
+    {
+      "id": 1,
+      "nombreUsuario": "administrador",
+      "email": "admin@rollingcode.com",
+      "password": "123456aA",
+      "rol": "admin"
+    },
+    {
+      "nombreUsuario": "prueba",
+      "email": "correo@correo.com",
+      "password": "123456aA",
+      "id": 2,
+      "rol": "user"
+    },
+    {
+      "nombreUsuario": "e",
+      "email": "e@e.com",
+      "password": "123456aA",
+      "id": 3,
+      "rol": "user"
+    },
+    {
+      "nombreUsuario": "e",
+      "email": "e@e.com",
+      "password": "123456aA",
+      "id": 4,
+      "rol": "user"
+    },
+    {
+      "nombreUsuario": "pruebatres",
+      "email": "correo2@correo.com",
+      "password": "123456aA",
+      "id": 5
+    },
+    {
+      "nombreUsuario": "prueba",
+      "email": "correo5@correo.com",
+      "password": "123456aA",
+      "repetirPassword": "123456aA",
+      "id": 6
+    }
+  ]
+}
