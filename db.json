@@ -1,12 +1,11 @@
 {
   "productos": [
     {
-      "nombreProducto": "café",
-      "precio": "120",
-      "imagen": "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg",
-      "descripcionProducto": "",
-      "categoria": "Bebida caliente",
-      "descripcion": "alguna descripcion...",
+      "nombreProducto": "café 2",
+      "precio": "230",
+      "imagen": "https://images.pexels.com/photos/15851472/pexels-photo-15851472.jpeg",
+      "descripcion": "alguna descripcion de prueba",
+      "categoria": "Dulce",
       "id": 1
     }
   ],
