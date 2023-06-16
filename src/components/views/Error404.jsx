@@ -1,11 +1,16 @@
-import { Button } from 'react-bootstrap';
-import error from '../../assets/error404.png';
+import error from '../../assets/error404.jpg';
+import { Link } from 'react-router-dom';
+
 const Error404 = () => {
   return (
     <section className="mainSection text-center">
-      <img src={error} alt="error 404" />
+      <div id="Error404" className="mb-3">
+        <img src={error} alt="error 404" />
+      </div>
       <div>
-        <Button variant="primary">Volver al inicio</Button>
+        <Link className="btn btn-primary mb-4" to={'/'}>
+          Volver al inicio
+        </Link>
       </div>
     </section>
   );

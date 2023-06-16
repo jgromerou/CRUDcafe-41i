@@ -1,15 +1,39 @@
-#root{
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.mainSection{
-    flex-grow: 1;
+.mainSection {
+  flex-grow: 1;
 }
 
-.banner{
-    object-fit: cover;
-    height: 395px;
-    width: 100%;
+.banner {
+  object-fit: cover;
+  height: 395px;
+  width: 100%;
+}
+
+#Error404 {
+  display: flex;
+  justify-content: center;
+}
+#Error404 img {
+  padding-top: 10px;
+  width: 97%;
+  object-fit: cover;
+  display: block;
+  margin: auto;
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  #Error404 img {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  #Error404 img {
+    width: 40%;
+  }
 }

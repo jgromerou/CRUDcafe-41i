@@ -24,7 +24,7 @@ const Inicio = () => {
         alt="fondo cafe"
       />
       <Container>
-        <h1 className="display-4">Nuestros Productos</h1>
+        <h1 className="display-4 my-2">Nuestros Productos</h1>
         <hr />
         <Row>
           {productos.map((producto) => (

@@ -1,7 +1,8 @@
-import { Col, Card, Button } from 'react-bootstrap';
+import { Col, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const CardProducto = ({ producto }) => {
-  const { nombreProducto, precio, imagen } = producto;
+  const { nombreProducto, precio, imagen, id } = producto;
   return (
     <Col md={4} ld={3} className="mb-3">
       <Card>
@@ -9,7 +10,9 @@ const CardProducto = ({ producto }) => {
         <Card.Body>
           <Card.Title className="text-uppercase">{nombreProducto}</Card.Title>
           <Card.Text>${precio}</Card.Text>
-          <Button variant="primary">Ver detalle</Button>
+          <Link className="btn btn-primary" to={'/detalle/' + id}>
+            Ver Detalles
+          </Link>
         </Card.Body>
       </Card>
     </Col>
