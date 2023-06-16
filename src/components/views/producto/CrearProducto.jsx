@@ -52,7 +52,7 @@ const CrearProducto = () => {
               },
               maxLength: {
                 value: 100,
-                message: 'La cantidad minima de caracteres es de 2 digitos',
+                message: 'La cantidad máxima de caracteres es de 100 digitos',
               },
             })}
           />
