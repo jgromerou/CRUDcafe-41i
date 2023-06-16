@@ -3,12 +3,14 @@ import { useForm } from 'react-hook-form';
 import { registrar } from '../../helpers/queries';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { useRef } from 'react';
 
 const CrearUsuario = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
     reset,
   } = useForm();
 
@@ -33,7 +35,8 @@ const CrearUsuario = () => {
       }
     });
   };
-
+  const password = useRef({});
+  password.current = watch('password', '');
   return (
     <section className="container mainSection">
       <h1 className="display-4 mt-5">Nuevo usuario</h1>
@@ -87,6 +90,26 @@ const CrearUsuario = () => {
           />
           <Form.Text className="text-danger my-2 py-3">
             {errors.password?.message}
+          </Form.Text>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formRepetirPassword">
+          <Form.Control
+            type="password"
+            placeholder="Repetir Password"
+            {...register('repetirPassword', {
+              required: 'El Password es un dato obligatorio.',
+              pattern: {
+                value: /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/,
+                message:
+                  'La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.',
+              },
+              validate: (value) =>
+                value === password.current || 'Las contraseñas no coinciden',
+            })}
+          />
+          <Form.Text className="text-danger my-2 py-3">
+            {errors.repetirPassword?.message}
           </Form.Text>
         </Form.Group>
         <div className="row">
