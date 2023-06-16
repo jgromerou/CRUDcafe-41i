@@ -10,7 +10,7 @@
 
 .banner {
   object-fit: cover;
-  height: 395px;
+  height: 20rem;
   width: 100%;
 }
 
@@ -35,6 +35,9 @@
   #Error404 img {
     width: 80%;
   }
+  .banner {
+    height: 395px;
+  }
 }
 
 @media screen and (min-width: 992px) {
@@ -43,5 +46,8 @@
   }
   .cardImage {
     height: unset;
+  }
+  .banner {
+    height: 395px;
   }
 }
