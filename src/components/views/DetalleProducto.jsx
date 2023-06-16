@@ -1,33 +1,57 @@
+import { useEffect, useState } from 'react';
 import { Container, Card, Row, Col } from 'react-bootstrap';
+import { useNavigate, useParams } from 'react-router-dom';
+import { consultaProducto } from '../helpers/queries';
 
 const DetalleProducto = () => {
+  const [nombreProducto, setNombreProducto] = useState('');
+  const [precio, setPrecio] = useState(0);
+  const [imagen, setImagen] = useState('');
+  const [descripcion, setDescripcion] = useState('');
+  const [categoria, setCategoria] = useState('');
+  const { id } = useParams();
+  const navegacion = useNavigate();
+
+  useEffect(() => {
+    consultaProducto(id).then((respuesta) => {
+      if (respuesta) {
+        console.log(respuesta);
+        setNombreProducto(respuesta.nombreProducto);
+        setPrecio(respuesta.precio);
+        setImagen(respuesta.imagen);
+        setDescripcion(respuesta.descripcion);
+        setCategoria(respuesta.categoria);
+      } else {
+        Swal.fire(
+          'Ocurrio un error',
+          `No se puede editar el producto, intentelo mas tarde`,
+          'error'
+        );
+      }
+    });
+  }, []);
   return (
     <Container className="my-3 mainSection">
       <Card>
         <Row>
           <Col md={6}>
-            <Card.Img
-              variant="top"
-              src="https://images.pexels.com/photos/10273537/pexels-photo-10273537.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            />
+            <Card.Img variant="top" src={imagen} className="cardImage" />
           </Col>
           <Col md={6}>
             <Card.Body>
-              <Card.Title>MOCHACCINO CANELA</Card.Title>
+              <Card.Title>{nombreProducto}</Card.Title>
               <hr />
               <Card.Text>
-                Combinación perfecta entre leche, choclate, café intenso y un
-                toque de canela. Café con granos 100% de arábica brasileña. Todo
-                en una capsula inteligente.
+                {descripcion}
                 <br />
                 <br />
                 <span className="text-danger fw-semibold ">
                   Categoria:
                 </span>{' '}
-                Café
+                {categoria}
                 <br />
-                <span className="text-danger fw-semibold ">Precio:</span>{' '}
-                $1.740,00
+                <span className="text-danger fw-semibold ">Precio:</span> $
+                {precio}
               </Card.Text>
             </Card.Body>
           </Col>

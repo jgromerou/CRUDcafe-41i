@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 const CardProducto = ({ producto }) => {
   const { nombreProducto, precio, imagen, id } = producto;
   return (
-    <Col md={4} ld={3} className="mb-3">
+    <Col md={6} lg={4} className="mb-3">
       <Card>
-        <Card.Img variant="top" src={imagen} />
+        <Card.Img variant="top" src={imagen} className="cardImage" />
         <Card.Body>
           <Card.Title className="text-uppercase">{nombreProducto}</Card.Title>
           <Card.Text>${precio}</Card.Text>
