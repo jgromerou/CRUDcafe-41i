@@ -84,7 +84,7 @@ export const consultaBorrarProducto = async (id) => {
 
 export const consultaNuevoProducto = async (producto) => {
   try {
-    const respuesta = await fetch(`${URLProducto}/${producto}`, {
+    const respuesta = await fetch(`${URLProducto}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

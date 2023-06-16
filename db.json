@@ -31,6 +31,30 @@
       "descripcion": "alguna descripcion de capuccino",
       "categoria": "Dulce",
       "id": 4
+    },
+    {
+      "nombreProducto": "Cafe con leche",
+      "precio": "800",
+      "imagen": "https://images.pexels.com/photos/9548499/pexels-photo-9548499.jpeg",
+      "descripcion": "es una descripción del café con leche....",
+      "categoria": "bebida caliente",
+      "id": 5
+    },
+    {
+      "nombreProducto": "prueba3",
+      "precio": "333",
+      "imagen": "https://images.pexels.com/photos/9548499/pexels-photo-9548499.jpeg",
+      "descripcion": "fesfesf",
+      "categoria": "bebida caliente",
+      "id": 6
+    },
+    {
+      "nombreProducto": "prueba44",
+      "precio": "444",
+      "imagen": "https://images.pexels.com/photos/13395849/pexels-photo-13395849.jpeg",
+      "descripcion": "fesfesf",
+      "categoria": "bebida caliente",
+      "id": 7
     }
   ],
   "usuarios": [

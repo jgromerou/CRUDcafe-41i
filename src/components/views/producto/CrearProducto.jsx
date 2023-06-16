@@ -1,5 +1,8 @@
 import { Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import { consultaNuevoProducto } from '../../helpers/queries';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const CrearProducto = () => {
   const {
@@ -9,27 +12,51 @@ const CrearProducto = () => {
     reset,
   } = useForm();
 
-  const onSubmit = (producto) => {
-    console.log(producto);
-    //TODO: Hacer la función crearProducto en queries.js e incovarla aqui
-
-    reset();
+  const navegacion = useNavigate();
+  const onSubmit = (productoNuevo) => {
+    consultaNuevoProducto(productoNuevo).then((respuestaCreated) => {
+      console.log(respuestaCreated);
+      if (respuestaCreated && respuestaCreated.status === 201) {
+        Swal.fire(
+          'Producto creado',
+          `El producto ${productoNuevo.nombreProducto} fue creado correctamente`,
+          'success'
+        );
+        reset();
+        navegacion('/administrador');
+      } else {
+        Swal.fire(
+          'Ocurrio un error',
+          `El producto ${productoNuevo.nombreProducto} no fue creado, intentelo mas tarde`,
+          'error'
+        );
+      }
+    });
   };
+
   return (
     <section className="container mainSection">
       <h1 className="display-4 mt-5">Nuevo producto</h1>
       <hr />
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group className="mb-3" controlId="formNombreProdcuto">
+        <Form.Group className="mb-3" controlId="formNombreProducto">
           <Form.Label>Producto*</Form.Label>
           <Form.Control
             type="text"
             placeholder="Ej: Cafe"
             {...register('nombreProducto', {
-              required: 'El nombre del producto es un dato obligatorio.',
+              required: 'El nombre del producto es obligatorio',
+              minLength: {
+                value: 2,
+                message: 'La cantidad minima de caracteres es de 2 digitos',
+              },
+              maxLength: {
+                value: 100,
+                message: 'La cantidad minima de caracteres es de 2 digitos',
+              },
             })}
           />
-          <Form.Text className="text-danger my-2 py-3">
+          <Form.Text className="text-danger">
             {errors.nombreProducto?.message}
           </Form.Text>
         </Form.Group>
@@ -39,10 +66,18 @@ const CrearProducto = () => {
             type="number"
             placeholder="Ej: 50"
             {...register('precio', {
-              required: 'El precio es un dato obligatorio.',
+              required: 'El precio del producto es obligatorio',
+              min: {
+                value: 1,
+                message: 'El precio minimo es de $1',
+              },
+              max: {
+                value: 10000,
+                message: 'El precio maximo es de $10000',
+              },
             })}
           />
-          <Form.Text className="text-danger my-2 py-3">
+          <Form.Text className="text-danger">
             {errors.precio?.message}
           </Form.Text>
         </Form.Group>
@@ -52,15 +87,10 @@ const CrearProducto = () => {
             type="text"
             placeholder="Ej: https://www.pexels.com/es-es/vans-en-blanco-y-negro-fuera-de-la-decoracion-para-colgar-en-la-pared-1230679/"
             {...register('imagen', {
-              required: 'La imagen es un dato obligatorio.',
-              pattern: {
-                value: /^(http(s?):)([/|.|\w|\s|-])*\.(?:png|jpe?g|gif|svg)$/,
-                message:
-                  'La URL de la imagen debe cumplir con  por ej: http://imagen.com/img.jpg',
-              },
+              required: 'La imagen es obligatoria',
             })}
           />
-          <Form.Text className="text-danger my-2 py-3">
+          <Form.Text className="text-danger">
             {errors.imagen?.message}
           </Form.Text>
         </Form.Group>
@@ -72,21 +102,20 @@ const CrearProducto = () => {
             placeholder="Combinación perfecta entre leche, choclate, café intenso y un toque de canela."
             style={{ height: '100px' }}
             aria-label="Seleccione una descripción:"
-            {...register('descripcionProducto', {
+            {...register('descripcion', {
               required: 'Debe ingresar una descripción del producto',
             })}
           />
           <Form.Text className="text-danger my-2 py-3">
-            {errors.descripcionProducto?.message}
+            {errors.descripcion?.message}
           </Form.Text>
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formCategoria">
+        <Form.Group className="mb-3" controlId="formPrecio">
           <Form.Label>Categoria*</Form.Label>
           <Form.Select
-            aria-label="Seleccione una categoría:"
-            {...register('categoriaProducto', {
-              required: 'Debe seleccionar una categoría',
+            {...register('categoria', {
+              required: 'La categoria es obligatoria',
             })}
           >
             <option value="">Seleccione una opcion</option>
@@ -95,11 +124,11 @@ const CrearProducto = () => {
             <option value="dulce">Dulce</option>
             <option value="salado">Salado</option>
           </Form.Select>
-          <Form.Text className="text-danger my-2 py-3">
-            {errors.categoriaProducto?.message}
+          <Form.Text className="text-danger">
+            {errors.categoria?.message}
           </Form.Text>
         </Form.Group>
-        <Button variant="primary" type="submit" className="mb-2">
+        <Button variant="primary" type="submit">
           Guardar
         </Button>
       </Form>
