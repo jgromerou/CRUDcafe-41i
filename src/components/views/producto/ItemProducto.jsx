@@ -21,7 +21,7 @@ const ItemProducto = ({ producto, setProductos }) => {
       //borrar el producto de la API
       consultaBorrarProducto(producto.id).then((respuesta) => {
         console.log(respuesta);
-        if (respuesta.status === 200) {
+        if (respuesta && respuesta.status === 200) {
           Swal.fire(
             'Producto eliminado',
             `El ${producto.nombreProducto} fue eliminado correctamente`,

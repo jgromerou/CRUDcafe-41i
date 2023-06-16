@@ -112,6 +112,17 @@ export const consultaEditarProducto = async (producto, id) => {
   }
 };
 
+export const consultaBorrarUsuario = async (id) => {
+  try {
+    const respuesta = await fetch(`${URLUsuario}/${id}`, {
+      method: 'DELETE',
+    });
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 /*
   GET: obtener un listado de elementos o un elemento.
 

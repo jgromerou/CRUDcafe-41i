@@ -85,19 +85,6 @@
       "password": "123456aA",
       "id": 4,
       "rol": "user"
-    },
-    {
-      "nombreUsuario": "pruebatres",
-      "email": "correo2@correo.com",
-      "password": "123456aA",
-      "id": 5
-    },
-    {
-      "nombreUsuario": "prueba",
-      "email": "correo5@correo.com",
-      "password": "123456aA",
-      "repetirPassword": "123456aA",
-      "id": 6
     }
   ]
 }
