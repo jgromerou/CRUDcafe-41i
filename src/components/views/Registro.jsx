@@ -1,19 +1,33 @@
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { registrar } from '../helpers/queries';
+import Swal from 'sweetalert2';
 
 const Registro = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm();
-
-  const onSubmit = (producto) => {
-    console.log(producto);
-    //TODO: Hacer la función crearProducto en queries.js e incovarla aqui
-
-    reset();
+  const navegacion = useNavigate();
+  const onSubmit = (usuarioNuevo) => {
+    registrar(usuarioNuevo).then((respuesta) => {
+      if (respuesta) {
+        Swal.fire(
+          'Bienvenido',
+          `${respuesta.nombreUsuario} registrado correctamente. Tiene que iniciar sesión`,
+          'success'
+        );
+        navegacion('/login');
+      } else {
+        Swal.fire(
+          'Error',
+          'No se pudo registrar el usuario, intente más tarde',
+          'error'
+        );
+      }
+    });
   };
   return (
     <div className="mt-5 mainSection">

@@ -29,8 +29,6 @@ const Login = ({ setUsuarioLogueado }) => {
         Swal.fire('Error', 'Email o password incorrecto', 'error');
       }
     });
-
-    reset();
   };
 
   return (

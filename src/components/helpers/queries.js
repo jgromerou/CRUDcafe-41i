@@ -28,6 +28,21 @@ export const login = async (usuario) => {
   }
 };
 
+export const registrar = async (usuarioNuevo) => {
+  try {
+    const respuesta = await fetch(`${URLUsuario}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(usuarioNuevo),
+    });
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const consultaListaProductos = async () => {
   try {
     const respuesta = await fetch(URLProducto);
