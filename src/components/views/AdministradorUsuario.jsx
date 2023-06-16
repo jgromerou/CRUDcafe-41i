@@ -21,7 +21,7 @@ const AdministradorUsuario = () => {
     <section className="container mainSection">
       <div className="d-flex justify-content-between align-items-center mt-5">
         <h1 className="display-4 ">Usuarios disponibles</h1>
-        <Link className="btn btn-primary" to="/administrador/crear-producto">
+        <Link className="btn btn-primary" to="/administrador/crear-usuario">
           Agregar
         </Link>
       </div>

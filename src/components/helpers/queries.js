@@ -10,9 +10,7 @@ export const login = async (usuario) => {
     const usuarioBuscado = listaUsuarios.find(
       (itemBuscado) => itemBuscado.email === usuario.email
     );
-    console.log(usuarioBuscado);
     if (usuarioBuscado) {
-      console.log('Email encontrado');
       if (usuarioBuscado.password === usuario.password) {
         return usuarioBuscado;
       } else {

@@ -36,27 +36,31 @@
   "usuarios": [
     {
       "id": 1,
-      "nombreUsuario": "admin",
+      "nombreUsuario": "administrador",
       "email": "admin@rollingcode.com",
-      "password": "123456aA"
+      "password": "123456aA",
+      "rol": "admin"
     },
     {
       "nombreUsuario": "prueba",
       "email": "correo@correo.com",
       "password": "123456aA",
-      "id": 2
+      "id": 2,
+      "rol": "user"
     },
     {
       "nombreUsuario": "e",
       "email": "e@e.com",
       "password": "123456aA",
-      "id": 3
+      "id": 3,
+      "rol": "user"
     },
     {
       "nombreUsuario": "e",
       "email": "e@e.com",
       "password": "123456aA",
-      "id": 4
+      "id": 4,
+      "rol": "user"
     }
   ]
 }
