@@ -1,4 +1,4 @@
-import { Table, Button } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import ItemProducto from './producto/ItemProducto';
 import { useState, useEffect } from 'react';
 import { consultaListaProductos } from '../helpers/queries';
