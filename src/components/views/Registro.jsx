@@ -85,6 +85,19 @@ const Registro = () => {
                 {errors.password?.message}
               </Form.Text>
             </Form.Group>
+            <Form.Group className="mb-3" controlId="formRol">
+              <Form.Select
+                {...register('rol', {
+                  required: 'El rol es obligatorio.',
+                })}
+              >
+                <option value="">Seleccione un rol disponible:</option>
+                <option value="user">Normal</option>
+              </Form.Select>
+              <Form.Text className="text-danger">
+                {errors.rol?.message}
+              </Form.Text>
+            </Form.Group>
             <div className="row">
               <Button
                 className="btn btn-dark btn-lg btn-block mb-2"
