@@ -69,16 +69,18 @@
     {
       "nombreUsuario": "prueba",
       "email": "correo@correo.com",
-      "password": "123456aA",
+      "password": "",
       "id": 2,
-      "rol": "user"
+      "rol": "user",
+      "repetirPassword": ""
     },
     {
       "nombreUsuario": "e",
       "email": "e@e.com",
-      "password": "123456aA",
-      "id": 3,
-      "rol": "user"
+      "password": "",
+      "repetirPassword": "",
+      "rol": "user",
+      "id": 3
     },
     {
       "nombreUsuario": "e",
@@ -102,6 +104,18 @@
       "repetirPassword": "123456aA",
       "rol": "admin",
       "id": 6
+    },
+    {
+      "nombreUsuario": "marielaSaradelValleCalchaqui",
+      "email": "sara@saralia.com",
+      "password": "123456aA",
+      "id": 7
+    },
+    {
+      "nombreUsuario": "pruebasiete",
+      "email": "a@a.com",
+      "password": "123456aA",
+      "id": 8
     }
   ]
 }

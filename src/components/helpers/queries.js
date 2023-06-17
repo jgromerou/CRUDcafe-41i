@@ -136,7 +136,7 @@ export const consultaBorrarUsuario = async (id) => {
 export const consultaEditarUsuario = async (usuario, id) => {
   try {
     const respuesta = await fetch(URLUsuario + '/' + id, {
-      method: 'PATCH',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },

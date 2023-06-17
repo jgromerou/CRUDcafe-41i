@@ -18,7 +18,7 @@ const EditarUsuario = () => {
   const { id } = useParams();
   const navegacion = useNavigate();
   const password = useRef({});
-
+  password.current = watch('password', '');
   useEffect(() => {
     consultaUsuario(id).then((respuesta) => {
       if (respuesta) {
@@ -27,6 +27,9 @@ const EditarUsuario = () => {
         setValue('nombreUsuario', respuesta.nombreUsuario);
         setValue('email', respuesta.email);
         setValue('rol', respuesta.rol);
+        password.current = respuesta.password;
+        setValue('repetirPassword', password);
+        console.log(password.current);
       } else {
         Swal.fire(
           'Ocurrio un error',
@@ -39,6 +42,15 @@ const EditarUsuario = () => {
 
   const onSubmit = (usuarioEditado) => {
     console.log(usuarioEditado);
+    if (
+      usuarioEditado.password === '' &&
+      usuarioEditado.repetirPassword === ''
+    ) {
+      setValue('password', password);
+      setValue('repetirPassword', password);
+      return;
+    }
+    console.log(usuarioEditado);
     consultaEditarUsuario(usuarioEditado, id).then((respuestaEditado) => {
       if (respuestaEditado && respuestaEditado.status === 200) {
         Swal.fire(
@@ -46,7 +58,7 @@ const EditarUsuario = () => {
           `El usuario ${usuarioEditado.nombreUsuario} fue editado correctamente`,
           'success'
         );
-        navegacion('/administrador');
+        navegacion('/administradorUsuario');
       } else {
         Swal.fire(
           'Ocurrio un error',
@@ -57,7 +69,6 @@ const EditarUsuario = () => {
     });
   };
 
-  password.current = watch('password', '');
   return (
     <section className="container mainSection">
       <h1 className="display-4 mt-5">Editar Usuario</h1>
@@ -101,7 +112,6 @@ const EditarUsuario = () => {
             type="password"
             placeholder="Password"
             {...register('password', {
-              required: 'El Password es un dato obligatorio.',
               pattern: {
                 value: /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/,
                 message:
@@ -119,7 +129,6 @@ const EditarUsuario = () => {
             type="password"
             placeholder="Repetir Password"
             {...register('repetirPassword', {
-              required: 'El Password es un dato obligatorio.',
               pattern: {
                 value: /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/,
                 message:
