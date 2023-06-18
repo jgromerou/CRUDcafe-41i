@@ -5,9 +5,8 @@ import { consultaListaProductos } from '../helpers/queries';
 import { Link } from 'react-router-dom';
 
 const Administrador = () => {
-  const itemsPorPagina = 5;
   const [productos, setProductos] = useState([]);
-
+  const itemsPorPagina = 5;
   const [paginaActual, setPaginaActual] = useState(1);
 
   // Calcula el índice inicial y final de los elementos a mostrar en la página actual
@@ -18,11 +17,6 @@ const Administrador = () => {
   // Calcula el número total de páginas
   const totalPaginas = Math.ceil(productos.length / itemsPorPagina);
 
-  // Cambia a la página especificada
-  const handlePageChange = (numeroPage) => {
-    setPaginaActual(numeroPage);
-  };
-
   useEffect(() => {
     consultaListaProductos()
       .then((repuesta) => {
@@ -32,6 +26,10 @@ const Administrador = () => {
         console.log(error);
       });
   }, []);
+
+  const handlePageChange = (numeroPage) => {
+    setPaginaActual(numeroPage);
+  };
 
   return (
     <section className="container mainSection">
