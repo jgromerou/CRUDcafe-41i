@@ -1,6 +1,6 @@
 import { Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { consultaEditarUsuario, consultaUsuario } from '../../helpers/queries';
 import Swal from 'sweetalert2';
@@ -12,24 +12,21 @@ const EditarUsuario = () => {
     formState: { errors },
     setValue,
     watch,
-    reset,
   } = useForm();
 
   const { id } = useParams();
   const navegacion = useNavigate();
   const password = useRef({});
   password.current = watch('password', '');
+  const [pass, setPass] = useState('');
   useEffect(() => {
     consultaUsuario(id).then((respuesta) => {
       if (respuesta) {
-        console.log('tengo que cargar el objeto en el formulario');
-        console.log(respuesta);
+        // tengo que cargar el objeto en el formulario
         setValue('nombreUsuario', respuesta.nombreUsuario);
         setValue('email', respuesta.email);
         setValue('rol', respuesta.rol);
-        password.current = respuesta.password;
-        setValue('repetirPassword', password);
-        console.log(password.current);
+        setPass(respuesta.password);
       } else {
         Swal.fire(
           'Ocurrio un error',
@@ -41,16 +38,13 @@ const EditarUsuario = () => {
   }, []);
 
   const onSubmit = (usuarioEditado) => {
-    console.log(usuarioEditado);
     if (
       usuarioEditado.password === '' &&
       usuarioEditado.repetirPassword === ''
     ) {
-      setValue('password', password);
-      setValue('repetirPassword', password);
-      return;
+      usuarioEditado.password = pass;
+      usuarioEditado.repetirPassword = pass;
     }
-    console.log(usuarioEditado);
     consultaEditarUsuario(usuarioEditado, id).then((respuestaEditado) => {
       if (respuestaEditado && respuestaEditado.status === 200) {
         Swal.fire(
@@ -109,7 +103,7 @@ const EditarUsuario = () => {
         </Form.Group>
         <Form.Group className="mb-3" controlId="formPassword">
           <Form.Control
-            type="password"
+            type="text"
             placeholder="Password"
             {...register('password', {
               pattern: {
@@ -126,7 +120,7 @@ const EditarUsuario = () => {
 
         <Form.Group className="mb-3" controlId="formRepetirPassword">
           <Form.Control
-            type="password"
+            type="text"
             placeholder="Repetir Password"
             {...register('repetirPassword', {
               pattern: {
@@ -157,7 +151,7 @@ const EditarUsuario = () => {
         </Form.Group>
         <div className="row">
           <Button className="btn btn-dark btn-lg btn-block mb-2" type="submit">
-            Registrar
+            Guardar
           </Button>
         </div>
       </Form>

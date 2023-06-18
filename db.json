@@ -77,8 +77,8 @@
     {
       "nombreUsuario": "e",
       "email": "e@e.com",
-      "password": "",
-      "repetirPassword": "",
+      "password": "123456bB",
+      "repetirPassword": "123456bB",
       "rol": "user",
       "id": 3
     },
@@ -108,7 +108,8 @@
     {
       "nombreUsuario": "pruebasiete",
       "email": "a@a.com",
-      "password": "123456aA",
+      "password": "123456aB",
+      "repetirPassword": "123456aB",
       "rol": "user",
       "id": 7
     }
