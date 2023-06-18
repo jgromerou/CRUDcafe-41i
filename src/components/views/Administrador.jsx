@@ -1,11 +1,27 @@
-import { Table } from 'react-bootstrap';
+import { Table, Pagination } from 'react-bootstrap';
 import ItemProducto from './producto/ItemProducto';
 import { useState, useEffect } from 'react';
 import { consultaListaProductos } from '../helpers/queries';
 import { Link } from 'react-router-dom';
 
 const Administrador = () => {
+  const itemsPorPagina = 5;
   const [productos, setProductos] = useState([]);
+
+  const [paginaActual, setPaginaActual] = useState(1);
+
+  // Calcula el índice inicial y final de los elementos a mostrar en la página actual
+  const indiceUltimoItem = paginaActual * itemsPorPagina;
+  const indicePrimerItem = indiceUltimoItem - itemsPorPagina;
+  const currentItems = productos.slice(indicePrimerItem, indiceUltimoItem);
+
+  // Calcula el número total de páginas
+  const totalPaginas = Math.ceil(productos.length / itemsPorPagina);
+
+  // Cambia a la página especificada
+  const handlePageChange = (numeroPage) => {
+    setPaginaActual(numeroPage);
+  };
 
   useEffect(() => {
     consultaListaProductos()
@@ -38,7 +54,7 @@ const Administrador = () => {
           </tr>
         </thead>
         <tbody>
-          {productos.map((producto) => (
+          {currentItems.map((producto) => (
             <ItemProducto
               key={producto.id}
               producto={producto}
@@ -47,6 +63,25 @@ const Administrador = () => {
           ))}
         </tbody>
       </Table>
+      <Pagination>
+        <Pagination.Prev
+          disabled={paginaActual === 1}
+          onClick={() => handlePageChange(paginaActual - 1)}
+        />
+        {[...Array(totalPaginas)].map((_, index) => (
+          <Pagination.Item
+            key={index}
+            active={index + 1 === paginaActual}
+            onClick={() => handlePageChange(index + 1)}
+          >
+            {index + 1}
+          </Pagination.Item>
+        ))}
+        <Pagination.Next
+          disabled={paginaActual === totalPaginas}
+          onClick={() => handlePageChange(paginaActual + 1)}
+        />
+      </Pagination>
     </section>
   );
 };
