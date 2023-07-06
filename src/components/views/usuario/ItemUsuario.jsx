@@ -6,7 +6,7 @@ import {
 } from '../../helpers/queries';
 import Swal from 'sweetalert2';
 
-const ItemUsuario = ({ usuario, setUsuarios }) => {
+const ItemUsuario = ({ usuario, setUsuarios, index }) => {
   const borrarUsuario = () => {
     Swal.fire({
       title: `¿Esta seguro de borrar el usuario ${usuario.nombreUsuario}?`,
@@ -44,8 +44,7 @@ const ItemUsuario = ({ usuario, setUsuarios }) => {
 
   return (
     <tr>
-      {/* <td>{props.usuario._id}</td> */}
-      <td>{usuario.id}</td>
+      <td>{index}</td>
       <td>{usuario.nombreUsuario}</td>
       <td>{usuario.email}</td>
       <td>{usuario.rol}</td>

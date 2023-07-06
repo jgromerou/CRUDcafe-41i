@@ -77,14 +77,6 @@
     {
       "nombreUsuario": "e",
       "email": "e@e.com",
-      "password": "123456bB",
-      "repetirPassword": "123456bB",
-      "rol": "user",
-      "id": 3
-    },
-    {
-      "nombreUsuario": "e",
-      "email": "e@e.com",
       "password": "123456aA",
       "id": 4,
       "rol": "user"

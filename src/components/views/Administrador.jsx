@@ -43,7 +43,7 @@ const Administrador = () => {
       <Table responsive striped bordered hover>
         <thead>
           <tr>
-            <th>Cod</th>
+            <th>N°</th>
             <th>Producto</th>
             <th>Precio</th>
             <th>URL de Imagen</th>
@@ -52,11 +52,12 @@ const Administrador = () => {
           </tr>
         </thead>
         <tbody>
-          {currentItems.map((producto) => (
+          {currentItems.map((producto, index) => (
             <ItemProducto
               key={producto._id}
               producto={producto}
               setProductos={setProductos}
+              index={1 + index + itemsPorPagina * (paginaActual - 1)}
             ></ItemProducto>
           ))}
         </tbody>
