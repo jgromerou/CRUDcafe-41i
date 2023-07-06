@@ -71,7 +71,15 @@ const EditarProducto = () => {
             type="text"
             placeholder="Ej: Cafe"
             {...register('nombreProducto', {
-              required: 'El nombre del producto es un dato obligatorio.',
+              required: 'El nombre del producto es obligatorio',
+              minLength: {
+                value: 2,
+                message: 'La cantidad minima de caracteres es de 2 digitos',
+              },
+              maxLength: {
+                value: 100,
+                message: 'La cantidad máxima de caracteres es de 100 digitos',
+              },
             })}
           />
           <Form.Text className="text-danger my-2 py-3">
@@ -84,7 +92,15 @@ const EditarProducto = () => {
             type="number"
             placeholder="Ej: 50"
             {...register('precio', {
-              required: 'El precio es un dato obligatorio.',
+              required: 'El precio del producto es obligatorio',
+              min: {
+                value: 1,
+                message: 'El precio minimo es de $1',
+              },
+              max: {
+                value: 10000,
+                message: 'El precio maximo es de $10000',
+              },
             })}
           />
           <Form.Text className="text-danger my-2 py-3">
@@ -119,6 +135,14 @@ const EditarProducto = () => {
             aria-label="Seleccione una descripción:"
             {...register('descripcion', {
               required: 'Debe ingresar una descripción del producto',
+              minLength: {
+                value: 2,
+                message: 'La cantidad minima de caracteres es de 2 digitos',
+              },
+              maxLength: {
+                value: 300,
+                message: 'La cantidad máxima de caracteres es de 300 digitos',
+              },
             })}
           />
           <Form.Text className="text-danger my-2 py-3">
@@ -135,10 +159,10 @@ const EditarProducto = () => {
             })}
           >
             <option value="">Seleccione una opcion</option>
-            <option value="Bebida caliente">Bebida caliente</option>
-            <option value="Bebida fria">Bebida fria</option>
-            <option value="Dulce">Dulce</option>
-            <option value="Salado">Salado</option>
+            <option value="bebida caliente">bebida caliente</option>
+            <option value="bebida fria">bebida fria</option>
+            <option value="dulce">dulce</option>
+            <option value="salado">salado</option>
           </Form.Select>
           <Form.Text className="text-danger my-2 py-3">
             {errors.categoriaProducto?.message}
