@@ -19,7 +19,7 @@ const ItemProducto = ({ producto, setProductos }) => {
       cancelButtonText: 'Cancelar',
     }).then(() => {
       //borrar el producto de la API
-      consultaBorrarProducto(producto.id).then((respuesta) => {
+      consultaBorrarProducto(producto._id).then((respuesta) => {
         console.log(respuesta);
         if (respuesta && respuesta.status === 200) {
           Swal.fire(
@@ -44,7 +44,7 @@ const ItemProducto = ({ producto, setProductos }) => {
   return (
     <tr>
       {/* <td>{props.producto._id}</td> */}
-      <td>{producto.id}</td>
+      <td>{producto._id}</td>
       <td>{producto.nombreProducto}</td>
       <td>${producto.precio}</td>
       <td>{producto.imagen}</td>
@@ -52,7 +52,7 @@ const ItemProducto = ({ producto, setProductos }) => {
       <td>
         <Link
           className="btn btn-warning"
-          to={'/administrador/editar-producto/' + producto.id}
+          to={'/administrador/editar-producto/' + producto._id}
         >
           Editar
         </Link>
