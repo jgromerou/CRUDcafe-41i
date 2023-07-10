@@ -39,7 +39,7 @@ export const registrar = async (usuarioNuevo) => {
 
 export const consultaListaUsuarios = async () => {
   try {
-    const respuesta = await fetch(URLUsuario);
+    const respuesta = await fetch(`${URLUsuario}/usuarios`);
     const listaUsuarios = await respuesta.json();
     return listaUsuarios;
   } catch (error) {
@@ -52,16 +52,6 @@ export const consultaListaProductos = async () => {
     const respuesta = await fetch(URLProducto);
     const listaProductos = await respuesta.json();
     return listaProductos;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const consultaProducto = async (id) => {
-  try {
-    const respuesta = await fetch(URLProducto + '/' + id);
-    const producto = await respuesta.json();
-    return producto;
   } catch (error) {
     console.log(error);
   }
