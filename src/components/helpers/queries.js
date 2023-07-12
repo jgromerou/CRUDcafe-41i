@@ -1,7 +1,6 @@
 //llamar a mis variables de entorno.
 const URLUsuario = import.meta.env.VITE_API_USUARIO;
 const URLProducto = import.meta.env.VITE_API_PRODUCTO;
-const token = JSON.parse(sessionStorage.getItem('usuario')).token;
 
 export const login = async (usuario) => {
   try {
@@ -74,7 +73,7 @@ export const consultaBorrarProducto = async (id) => {
     const respuesta = await fetch(`${URLProducto}/${id}`, {
       method: 'DELETE',
       headers: {
-        'x-token': token,
+        'x-token': JSON.parse(sessionStorage.getItem('usuario')).token || '',
       },
     });
 
@@ -90,7 +89,7 @@ export const consultaNuevoProducto = async (producto) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-token': token,
+        'x-token': JSON.parse(sessionStorage.getItem('usuario')).token || '',
       },
       body: JSON.stringify(producto),
     });
@@ -115,7 +114,7 @@ export const consultaEditarProducto = async (producto, id) => {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'x-token': token,
+        'x-token': JSON.parse(sessionStorage.getItem('usuario')).token || '',
       },
       body: JSON.stringify(producto),
     });
