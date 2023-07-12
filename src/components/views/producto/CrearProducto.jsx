@@ -87,7 +87,12 @@ const CrearProducto = () => {
             type="text"
             placeholder="Ej: https://www.pexels.com/es-es/vans-en-blanco-y-negro-fuera-de-la-decoracion-para-colgar-en-la-pared-1230679/"
             {...register('imagen', {
-              required: 'La imagen es obligatoria',
+              required: 'La imagen es un dato obligatorio.',
+              pattern: {
+                value: /^(http(s?):)([/|.|\w|\s|-])*\.(?:png|jpe?g|gif|svg)$/,
+                message:
+                  'La URL de la imagen debe cumplir con  por ej: http://imagen.com/img.jpg',
+              },
             })}
           />
           <Form.Text className="text-danger">
@@ -104,6 +109,14 @@ const CrearProducto = () => {
             aria-label="Seleccione una descripción:"
             {...register('descripcion', {
               required: 'Debe ingresar una descripción del producto',
+              minLength: {
+                value: 2,
+                message: 'La cantidad minima de caracteres es de 2 digitos',
+              },
+              maxLength: {
+                value: 300,
+                message: 'La cantidad máxima de caracteres es de 300 digitos',
+              },
             })}
           />
           <Form.Text className="text-danger my-2 py-3">
@@ -119,10 +132,10 @@ const CrearProducto = () => {
             })}
           >
             <option value="">Seleccione una opcion</option>
-            <option value="Bebida caliente">Bebida caliente</option>
-            <option value="Bebida fria">Bebida fria</option>
-            <option value="Dulce">Dulce</option>
-            <option value="Salado">Salado</option>
+            <option value="bebida caliente">bebida caliente</option>
+            <option value="bebida fria">bebida fria</option>
+            <option value="dulce">dulce</option>
+            <option value="salado">salado</option>
           </Form.Select>
           <Form.Text className="text-danger">
             {errors.categoria?.message}

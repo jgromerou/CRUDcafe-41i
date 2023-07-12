@@ -46,7 +46,7 @@ const AdministradorUsuario = () => {
       <Table responsive striped bordered hover>
         <thead>
           <tr>
-            <th>Cod</th>
+            <th>N°</th>
             <th>Usuario</th>
             <th>Email</th>
             <th>Rol</th>
@@ -54,11 +54,12 @@ const AdministradorUsuario = () => {
           </tr>
         </thead>
         <tbody>
-          {currentItems.map((usuario) => (
+          {currentItems.map((usuario, index) => (
             <ItemUsuario
               key={usuario.id}
               usuario={usuario}
               setUsuarios={setUsuarios}
+              index={1 + index + itemsPorPagina * (paginaActual - 1)}
             ></ItemUsuario>
           ))}
         </tbody>

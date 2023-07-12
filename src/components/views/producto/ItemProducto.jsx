@@ -6,7 +6,7 @@ import {
 } from '../../helpers/queries';
 import { Link } from 'react-router-dom';
 
-const ItemProducto = ({ producto, setProductos }) => {
+const ItemProducto = ({ producto, setProductos, index }) => {
   const borrarProducto = () => {
     Swal.fire({
       title: `¿Estás seguro de borrar el producto ${producto.nombreProducto}?`,
@@ -17,34 +17,35 @@ const ItemProducto = ({ producto, setProductos }) => {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Borrar',
       cancelButtonText: 'Cancelar',
-    }).then(() => {
-      //borrar el producto de la API
-      consultaBorrarProducto(producto.id).then((respuesta) => {
-        console.log(respuesta);
-        if (respuesta && respuesta.status === 200) {
-          Swal.fire(
-            'Producto eliminado',
-            `El ${producto.nombreProducto} fue eliminado correctamente`,
-            'success'
-          );
-          //actualizar la tabla de productos.
-          consultaListaProductos().then((respuesta) => {
-            setProductos(respuesta);
-          });
-        } else {
-          Swal.fire(
-            'Ocurrió un error',
-            `Intente realizar esta opreación nuevamente más tarde`,
-            'error'
-          );
-        }
-      });
+    }).then((result) => {
+      if (result.isConfirmed) {
+        //borrar el producto de la API por su id
+        consultaBorrarProducto(producto._id).then((respuesta) => {
+          console.log(respuesta);
+          if (respuesta && respuesta.status === 200) {
+            Swal.fire(
+              'Producto eliminado',
+              `El ${producto.nombreProducto} fue eliminado correctamente`,
+              'success'
+            );
+            //actualizar la tabla de productos.
+            consultaListaProductos().then((respuesta) => {
+              setProductos(respuesta);
+            });
+          } else {
+            Swal.fire(
+              'Ocurrió un error',
+              `Intente realizar esta opreación nuevamente más tarde`,
+              'error'
+            );
+          }
+        });
+      }
     });
   };
   return (
     <tr>
-      {/* <td>{props.producto._id}</td> */}
-      <td>{producto.id}</td>
+      <td>{index}</td>
       <td>{producto.nombreProducto}</td>
       <td>${producto.precio}</td>
       <td>{producto.imagen}</td>
@@ -52,7 +53,7 @@ const ItemProducto = ({ producto, setProductos }) => {
       <td>
         <Link
           className="btn btn-warning"
-          to={'/administrador/editar-producto/' + producto.id}
+          to={'/administrador/editar-producto/' + producto._id}
         >
           Editar
         </Link>
