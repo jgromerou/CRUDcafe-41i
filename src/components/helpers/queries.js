@@ -1,6 +1,7 @@
 //llamar a mis variables de entorno.
 const URLUsuario = import.meta.env.VITE_API_USUARIO;
 const URLProducto = import.meta.env.VITE_API_PRODUCTO;
+const token = JSON.parse(sessionStorage.getItem('usuario')).token;
 
 export const login = async (usuario) => {
   try {
@@ -16,6 +17,7 @@ export const login = async (usuario) => {
       status: respuesta.status,
       nombreUsuario: datos.nombreUsuario,
       rol: datos.rol,
+      token: datos.token,
     };
   } catch (error) {
     console.log(error);
@@ -71,7 +73,11 @@ export const consultaBorrarProducto = async (id) => {
   try {
     const respuesta = await fetch(`${URLProducto}/${id}`, {
       method: 'DELETE',
+      headers: {
+        'x-token': token,
+      },
     });
+
     return respuesta;
   } catch (error) {
     console.log(error);
@@ -84,6 +90,7 @@ export const consultaNuevoProducto = async (producto) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'x-token': token,
       },
       body: JSON.stringify(producto),
     });
@@ -108,6 +115,7 @@ export const consultaEditarProducto = async (producto, id) => {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        'x-token': token,
       },
       body: JSON.stringify(producto),
     });
